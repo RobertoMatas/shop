@@ -17,5 +17,3 @@
 
 #Ignore database.yml
 /config/database.yml
-
-Gemfile.lock
