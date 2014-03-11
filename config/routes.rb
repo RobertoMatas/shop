@@ -1,4 +1,6 @@
 Shop::Application.routes.draw do
+  resources :orders
+
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.
