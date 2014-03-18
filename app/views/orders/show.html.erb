@@ -30,5 +30,13 @@
   <%= @order.customer_last_name %>
 </p>
 
+<p>
+  <ol>  
+    <% for line_item in @order.line_items %>  
+      <li><%= h line_item.product.name %></li>   
+    <% end %>  
+  </ol>  
+</p>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
