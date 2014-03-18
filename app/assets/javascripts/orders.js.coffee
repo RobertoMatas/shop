@@ -20,27 +20,38 @@ order_form = ->
 	appendFieldForProduct = (container) ->
 		line_item_field_product_id = createIdForField 'product_id'
 		line_item_field_product_name = createNameForField 'product_id'
-
-		container.append($ "<label for='#{line_item_field_product_id}'>Product</label>") 
-		sel = $("<select id='#{line_item_field_product_id}' name='#{line_item_field_product_name}' />").appendTo container
+		form_group = $ '<div class="form-group" />'
+		field_container = $ "<div class='col-sm-10' />"
+		form_group.append($ "<label for='#{line_item_field_product_id}' class='col-sm-2 control-label'>Product</label>") 	
+		sel = $("<select class='form-control' id='#{line_item_field_product_id}' name='#{line_item_field_product_name}' />").appendTo field_container
 		$(products).each( ->
 			sel.append($("<option>").attr('value', @id).text @.name)
 		)
+		form_group.append field_container
+		container.append form_group
 
 	appendFieldForQuantity = (container) ->
 		line_item_field_quantity_id = createIdForField 'quantity'
 		line_item_field_quantity_name = createNameForField 'quantity'
+		form_group = $ '<div class="form-group" />'
+		field_container = $ "<div class='col-sm-10' />"
+		form_group.append($ "<label for='#{line_item_field_quantity_id}' class='col-sm-2 control-label'>Quantity</label>")
+		field_container.append($ "<input class='form-control' id='#{line_item_field_quantity_id}' name='#{line_item_field_quantity_name}' type='number'>")
 
-		container.append($ "<label for='#{line_item_field_quantity_id}'>Quantity</label>")
-		container.append($ "<input id='#{line_item_field_quantity_id}' name='#{line_item_field_quantity_name}' type='number'>")
+		form_group.append field_container
+		container.append 	form_group
 
 	appendFieldForPrice = (container) ->
 		line_item_field_unit_price_id = createIdForField 'unit_price'
 		line_item_field_unit_price_name = createNameForField 'unit_price'
+		form_group = $ '<div class="form-group" />'
+		field_container = $ "<div class='col-sm-10' />"
+		form_group.append($ "<label for='#{line_item_field_unit_price_id}' class='col-sm-2 control-label'>Unit Price</label>")
+		field_container.append($ "<input class='form-control' id='#{line_item_field_unit_price_id}' name='#{line_item_field_unit_price_name}' type='number' step='0.15'>")
 
-		container.append($ "<label for='#{line_item_field_unit_price_id}'>Unit Price</label>")
-		container.append($ "<input id='#{line_item_field_unit_price_id}' name='#{line_item_field_unit_price_name}' type='number' step='0.15'>")
-
+		form_group.append field_container
+		container.append form_group
+		
 	appendDeleteAction = (container) ->
 		line_item_field_destroy_id = createIdForField '_destroy'
 		line_item_field_destroy_name = createNameForField '_destroy'
@@ -51,11 +62,15 @@ order_form = ->
 		div_field = $ '<div/>'
 		div_field.addClass 'fields'
 
-		appendFieldForProduct div_field
-		appendFieldForQuantity div_field
-		appendFieldForPrice div_field
-		appendDeleteAction div_field
+		div_container = $ '<div class="well well-lg" />'
+
+		appendFieldForProduct div_container
+		appendFieldForQuantity div_container
+		appendFieldForPrice div_container
+		appendDeleteAction div_container
 	
+		div_field.append div_container
+
 		$('#line_items_fields').append div_field
 
 		line_item_index++
