@@ -42,12 +42,12 @@ order_form = ->
 		do loadProducts
 		
 		$ '#line_items_fields'
-			.on 'click', '[class*="-remove"]', ->
+			.on 'click', '[class*="-danger"]', ->
 				$ this
 					.prev "input[type=hidden]"
 					.val true;
 				do $ this
-					.closest ".fields"
+					.closest ".form-inline"
 					.hide;  
 
 		$ '#add_line_items_field'

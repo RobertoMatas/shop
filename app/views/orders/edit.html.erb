@@ -5,7 +5,19 @@
 
 <%= render 'form' %>
 
-</div>
+	<div class="row">
+		<div class="col-sm-offset-1">
+			<%= link_to @order do %>
+				<span class="glyphicon glyphicon-pushpin"></span>
+				Show
+			<% end %>
+		</div>
+		<div class="col-sm-offset-1">
+			<%= link_to orders_path do %>
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				Back
+			<% end %>
+		</div>
+	</div>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+</div>

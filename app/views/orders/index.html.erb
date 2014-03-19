@@ -1,37 +1,59 @@
-<h1>Listing orders</h1>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listing Orders</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3">
+      <%= link_to new_order_path, class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        New Order  
+      <% end %>
+    </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Payment method</th>
+            <th>Shipping address</th>
+            <th>Shipping city</th>
+            <th>Customer name</th>
+            <th>Customer last name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Payment method</th>
-      <th>Shipping address</th>
-      <th>Shipping city</th>
-      <th>Customer name</th>
-      <th>Customer last name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.status %></td>
-        <td><%= order.payment_method %></td>
-        <td><%= order.shipping_address %></td>
-        <td><%= order.shipping_city %></td>
-        <td><%= order.customer_name %></td>
-        <td><%= order.customer_last_name %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.status %></td>
+              <td><%= order.payment_method %></td>
+              <td><%= order.shipping_address %></td>
+              <td><%= order.shipping_city %></td>
+              <td><%= order.customer_name %></td>
+              <td><%= order.customer_last_name %></td>
+              <td>
+                <%= link_to order, class: "btn-sm btn-info" do %>
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  Show
+                <% end %>
+                &nbsp;|&nbsp;
+                <%= link_to edit_order_path(order), class: "btn-sm btn-warning" do %>
+                  <span class="glyphicon glyphicon-edit"></span>
+                  Edit
+                <% end %>
+                &nbsp;|&nbsp;
+                <%= link_to order, method: :delete, class: "btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                  Destroy
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

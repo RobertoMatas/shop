@@ -1,15 +1,32 @@
-<div class="fields">
-  <%= f.label :product %>
-  <%= f.collection_select :product_id, Product.all, :id, :name %>
+<div class="well well-lg form-inline">
+  <div class="form-group">
+    <%= f.label :product, class:"col-sm-4 control-label" %>
+    <div class="col-sm-3">  
+      <%= f.collection_select :product_id, Product.all, :id, :name, {}, {:class=>'form-control'} %>
+    </div>
+  </div>
 
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity %>
+  <div class="form-group">
+    <%= f.label :quantity, class: "col-sm-3 control-label" %>
+    <div class="col-sm-1">
+      <%= f.number_field :quantity, size: 255, class: "form-control" %>
+    </div>
+  </div>
 
-  <%= f.label :unit_price %>
-  <%= f.number_field :unit_price, :step => 0.15 %>
+  <div class="form-group">
+    <%= f.label :unit_price, class: "col-sm-4 control-label" %>
+    <div class="col-sm-1">
+      <%= f.number_field :unit_price, :step => 0.15, size: 255, class: "form-control" %>
+    </div>
+  </div>
 
   <%= f.hidden_field :id %>
 	
 	<%= f.hidden_field :_destroy %> 
-  <span class="glyphicon glyphicon-remove"></span>
+
+  <button type="button" class="btn-sm btn-danger">
+    <span class="glyphicon glyphicon-remove"></span>
+    Delete
+  </button>
+
 </div>
