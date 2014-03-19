@@ -7,41 +7,6 @@ order_form = ->
 	line_item_index = 0
 	products = []
 
-	template = """
-						<div class="fields">
-							<div class="well well-lg">
-								<div class="form-group">
-									<label for="{{line_item_field_product_id}}" class="col-sm-2 control-label">Product</label>
-									<div class="col-sm-10">
-										<select class="form-control" id="{{line_item_field_product_id}}" name="{{line_item_field_product_name}}">
-										{{#products_list}}
-											<option value="{{id}}">{{name}}</option>
-										{{/products_list}}
-										</select>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label for="{{line_item_field_quantity_id}}" class="col-sm-2 control-label">Quantity</label>
-									<div class="col-sm-10">
-										<input class="form-control" id="{{line_item_field_quantity_id}}" name="{{line_item_field_quantity_name}}" type="number">
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label for="{{line_item_field_unit_price_id}}" class="col-sm-2 control-label">Unit Price</label>
-									<div class="col-sm-10">
-										<input class="form-control" id="{{line_item_field_unit_price_id}}" name="{{line_item_field_unit_price_name}}" type="number" step="0.15"></div>
-									</div>
-								
-								<input id="{{line_item_field_destroy_id}}" name="{{line_item_field_destroy_name}}" type="hidden" value="false">
-								
-								<span class="glyphicon glyphicon-remove"></span>
-								
-							</div>
-						</div>
-						"""
-
 	createIdForField = (field) ->
 		"order_line_items_attributes_#{line_item_index}_#{field}"
 
@@ -64,25 +29,34 @@ order_form = ->
 			line_item_field_destroy_name: createNameForField '_destroy'
 			products_list: products
 
-		html = Mustache.to_html template, data
-
-		$(html).appendTo '#line_items_fields'
-
-		line_item_index++
+		$.Mustache.load '/assets/templates/new_line_item_template.htm'
+	    .done ->
+	    	$ '#line_items_fields'
+	    		.mustache 'new_line_item', data
+	    	line_item_index++
 
 	self.init = ->
-		line_item_index = $('#add_line_items_field').data 'index-start-at'
+		line_item_index = $ '#add_line_items_field'
+			.data 'index-start-at'
+		
 		do loadProducts
 		
-		$('#line_items_fields').on 'click', '[class*="-remove"]', ->
-			$(this).prev("input[type=hidden]").val true;
-			do $(this).closest(".fields").hide;  
+		$ '#line_items_fields'
+			.on 'click', '[class*="-remove"]', ->
+				$ this
+					.prev "input[type=hidden]"
+					.val true;
+				do $ this
+					.closest ".fields"
+					.hide;  
 
-		$('#add_line_items_field').on 'click', (e) ->
-			do e.preventDefault
-			do self.createFormForNewLineItem
+		$ '#add_line_items_field'
+			.on 'click', (e) ->
+				do e.preventDefault
+				do self.createFormForNewLineItem
 
 	self
 
-$(document).on "page:change", ->
-	do order_form().init
+$ document
+	.on "page:change", ->
+		do order_form().init

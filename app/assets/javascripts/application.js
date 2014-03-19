@@ -16,3 +16,4 @@
 //= require_tree .
 //= require bootstrap
 //= require mustache
+//= require jquery.mustache
