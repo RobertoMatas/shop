@@ -51,3 +51,5 @@ gem 'debugger', group: [:development, :test]
 gem 'carrierwave'
 
 gem 'bootstrap-sass'
+
+gem 'mustache-js-rails'
