@@ -1,42 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
+<div class="list-group">
 
-<p>
-  <strong>Payment method:</strong>
-  <%= @order.payment_method %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Status:</h4>
+    <p class="list-group-item-text"><%= @order.status %></p>
+  </div>
 
-<p>
-  <strong>Shipping address:</strong>
-  <%= @order.shipping_address %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Payment method:</h4>
+    <p class="list-group-item-text"><%= @order.payment_method %></p>
+  </div>
 
-<p>
-  <strong>Shipping city:</strong>
-  <%= @order.shipping_city %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Shipping address:</h4>
+    <p class="list-group-item-text"><%= @order.shipping_address %></p>
+  </div>
 
-<p>
-  <strong>Customer name:</strong>
-  <%= @order.customer_name %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Shipping city:</h4>
+    <p class="list-group-item-text"><%= @order.shipping_city %></p>
+  </div>
 
-<p>
-  <strong>Customer last name:</strong>
-  <%= @order.customer_last_name %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Customer name:</h4>
+    <p class="list-group-item-text"><%= @order.customer_name %></p>
+  </div>
 
-<p>
-  <ol>  
-    <% for line_item in @order.line_items %>  
-      <li><%= h line_item.product.name %></li>   
-    <% end %>  
-  </ol>  
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Customer last name:</h4>
+    <p class="list-group-item-text"><%= @order.customer_last_name %></p>
+  </div>
+
+  <div class="list-group-item active">
+    <ul class="list-group">
+      <% for line_item in @order.line_items %>  
+        <li class="list-group-item"><%= h line_item.product.name %></li>   
+      <% end %>  
+    </ul>  
+  </div>
+
+</div>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
