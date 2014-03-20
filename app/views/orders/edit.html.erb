@@ -5,19 +5,19 @@
 
 <%= render 'form' %>
 
-	<div class="row">
-		<div class="col-sm-offset-1">
-			<%= link_to @order do %>
-				<span class="glyphicon glyphicon-pushpin"></span>
-				Show
-			<% end %>
-		</div>
-		<div class="col-sm-offset-1">
-			<%= link_to orders_path do %>
-				<span class="glyphicon glyphicon-chevron-left"></span>
-				Back
-			<% end %>
-		</div>
-	</div>
+</div>
 
+<div class="row">
+	<div class="col-sm-1 col-sm-offset-1">
+		<%= link_to orders_path do %>
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Back
+		<% end %>
+	</div>
+	<div class="col-sm-1">
+		<%= link_to @order do %>
+			<span class="glyphicon glyphicon-pushpin"></span>
+			Show
+		<% end %>
+	</div>
 </div>

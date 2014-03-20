@@ -1,34 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>Product Detail <small>ID #<%= @product.id %></small></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<% unless notice.blank? %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<div class="list-group">
+  
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Name:</h4>
+    <%= @product.name %>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Description:</h4>
+    <p class="list-group-item-text"><%= @product.description %></p>
+  </div>
 
-<p>
-  <strong>Stored at:</strong>
-  <%= @product.stored_at %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Stored at:</h4>
+    <p class="list-group-item-text"><%= @product.stored_at %></p>
+  </div>
 
-<p>
-  <strong>Manufacturer:</strong>
-  <%= @product.manufacturer %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Manufacturer:</h4>
+    <p class="list-group-item-text"><%= @product.manufacturer %></p>
+  </div>
 
-<p>
-  <strong>Stock:</strong>
-  <%= @product.stock %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Stock:</h4>
+    <p class="list-group-item-text"><%= @product.stock %></p>
+  </div>
 
-<p>
-  <strong>Photo:</strong>
-  <%= image_tag(@product.photo_url) if @product.photo? %>
-</p>
+  <div class="list-group-item active">
+    <h4 class="list-group-item-heading">Photo:</h4>
+    <div class="thumbnail"><%= image_tag @product.photo_url, {'data-src' => 'holder.js/100%x55'} if @product.photo? %></div>
+  </div>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+</div>
+
+<div class="row">
+  <div class="col-sm-1 col-sm-offset-1">
+    <%= link_to products_path do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      Back
+    <% end %>
+  </div>
+  <div class="col-sm-1">
+    <%= link_to edit_product_path @product do %>
+      <span class="glyphicon glyphicon-edit"></span>
+      Edit
+    <% end %>
+  </div>
+</div>

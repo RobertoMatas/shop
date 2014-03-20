@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <th>Image</th>
+    <th>Product</th>
+    <th>Unit price</th>
+    <th>Quantity</th>
+  </thead>
+  <tbody>
+  <% for line_item in @order.line_items %>
+    <tr>
+      <td class="col-sm-1">
+        <div class="thumbnail">
+          <%= image_tag line_item.product.photo_url, {'data-src' => 'holder.js/100%x55'} if line_item.product.photo? %>
+        </div>
+      </td>
+      <td><%= line_item.product.name %></td>
+      <td><%= line_item.unit_price %></td>
+      <td><%= line_item.quantity %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table> 

@@ -1,35 +1,69 @@
-<h1>Listing products</h1>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listing Products</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-1">
+        <%= link_to new_product_path, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          New Product  
+        <% end %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to orders_path, class: "btn btn-info" do %>
+          <span class="glyphicon glyphicon-list-alt"></span>
+          View Orders  
+        <% end %>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Stored at</th>
+            <th>Manufacturer</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Stored at</th>
-      <th>Manufacturer</th>
-      <th>Stock</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.stored_at %></td>
-        <td><%= product.manufacturer %></td>
-        <td><%= product.stock %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>  
+              <td class="col-sm-1">
+                <div class="thumbnail">
+                  <%= image_tag product.photo_url, {'data-src' => 'holder.js/100%x55'} if product.photo? %>
+                </div>
+              </td>
+              <td><%= product.name %></td>
+              <td><%= product.description %></td>
+              <td><%= product.stored_at %></td>
+              <td><%= product.manufacturer %></td>
+              <td><%= product.stock %></td>
+              <td>
+                  <%= link_to product, class: "btn-sm btn-info" do %>
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    Show
+                  <% end %>
+                  &nbsp;|&nbsp;
+                  <%= link_to edit_product_path(product), class: "btn-sm btn-warning" do %>
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Edit
+                  <% end %>
+                  &nbsp;|&nbsp;
+                  <%= link_to product, method: :delete, class: "btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Destroy
+                  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
