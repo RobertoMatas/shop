@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+#= depend_on_asset "new_line_item_template.htm"
+
 order_form = ->
 	self = {}
 	line_item_index = 0
@@ -29,7 +31,7 @@ order_form = ->
 			line_item_field_destroy_name: createNameForField '_destroy'
 			products_list: products
 
-		$.Mustache.load '/assets/templates/new_line_item_template.htm'
+		$.Mustache.load '/templates/new_line_item_template.htm'
 	    .done ->
 	    	$ '#line_items_fields'
 	    		.mustache 'new_line_item', data
