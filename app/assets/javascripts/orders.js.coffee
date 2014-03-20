@@ -2,8 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-#= depend_on_asset "new_line_item_template.htm"
-
 order_form = ->
 	self = {}
 	line_item_index = 0
