@@ -1,0 +1,34 @@
+
+	<div class="well well-lg form-inline">
+		<div class="form-group">
+			<label for="<%=line_item_field_product_id%>" class="col-sm-4 control-label">Product</label>
+			<div class="col-sm-3">
+				<select class="form-control" id="<%=line_item_field_product_id%>" name="<%=line_item_field_product_name%>">
+				<% for(var i = 0; i < products_list.length; i++) { %>
+					<option value="<%=products_list[i].id%>"><%=products_list[i].name%></option>
+				<% } %>
+				</select>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="<%=line_item_field_quantity_id%>" class="col-sm-3 control-label">Quantity</label>
+			<div class="col-sm-1">
+				<input class="form-control" id="<%=line_item_field_quantity_id%>" name="<%=line_item_field_quantity_name%>" type="number">
+			</div>
+
+		</div>
+		
+		<div class="form-group">
+			<label for="<%=line_item_field_unit_price_id%>" class="col-sm-2 control-label">Price</label>
+			<div class="col-sm-1">
+				<input class="form-control" id="<%=line_item_field_unit_price_id%>" name="<%=line_item_field_unit_price_name%>" type="number" step="0.15">
+			</div>
+		</div>
+
+		<input id="<%=line_item_field_destroy_id%>" name="<%=line_item_field_destroy_name%>" type="hidden" value="false">
+		<button type="button" class="btn-sm btn-danger">
+				<span class="glyphicon glyphicon-remove"></span>
+		</button>
+				
+	</div>

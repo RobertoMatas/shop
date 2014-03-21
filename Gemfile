@@ -52,4 +52,4 @@ gem 'carrierwave'
 
 gem 'bootstrap-sass'
 
-gem 'mustache-js-rails'
+gem 'ejs'

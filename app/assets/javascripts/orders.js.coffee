@@ -17,7 +17,7 @@ order_form = ->
 		$.getJSON '/products.json', (data) ->
 			products = data
 
-	self.createFormForNewLineItem = ->
+	createFormForNewLineItem = ->
 		data = 
 			line_item_field_product_id: createIdForField 'product_id'
 			line_item_field_product_name: createNameForField 'product_id'
@@ -29,11 +29,16 @@ order_form = ->
 			line_item_field_destroy_name: createNameForField '_destroy'
 			products_list: products
 
-		$.Mustache.load '/templates/new_line_item_template.htm'
-	    .done ->
-	    	$ '#line_items_fields'
-	    		.mustache 'new_line_item', data
-	    	line_item_index++
+		$ '#line_items_fields'
+			.append JST['templates/new_line_item_template'] data
+
+		line_item_index++
+
+		#$.Mustache.load '/templates/new_line_item_template'
+	  #  .done ->
+	  #  	$ '#line_items_fields'
+	  #  		.mustache 'new_line_item', data
+	  #  	line_item_index++
 
 	self.init = ->
 		line_item_index = $ '#add_line_items_field'
@@ -53,7 +58,7 @@ order_form = ->
 		$ '#add_line_items_field'
 			.on 'click', (e) ->
 				do e.preventDefault
-				do self.createFormForNewLineItem
+				do createFormForNewLineItem
 
 	self
 
