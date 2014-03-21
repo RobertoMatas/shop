@@ -31,14 +31,7 @@ order_form = ->
 
 		$ '#line_items_fields'
 			.append JST['templates/new_line_item_template'] data
-
 		line_item_index++
-
-		#$.Mustache.load '/templates/new_line_item_template'
-	  #  .done ->
-	  #  	$ '#line_items_fields'
-	  #  		.mustache 'new_line_item', data
-	  #  	line_item_index++
 
 	self.init = ->
 		line_item_index = $ '#add_line_items_field'
