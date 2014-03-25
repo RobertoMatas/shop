@@ -27,6 +27,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.16)
+    bcrypt (3.1.7-x86-mingw32)
+    bcrypt-ruby (3.1.5-x86-mingw32)
+      bcrypt (>= 3.1.3)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -67,7 +70,6 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.2)
-    pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -130,6 +132,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.1.2)
   bootstrap-sass
   carrierwave
   coffee-rails (~> 4.0.0)
