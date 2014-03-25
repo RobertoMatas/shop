@@ -11,6 +11,12 @@ Shop::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'products#index'
 
+  get "/signin", to: "sessions#new"
+
+  post "/signin", to: "sessions#create"
+
+  delete "/signout", to: "sessions#destroy"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

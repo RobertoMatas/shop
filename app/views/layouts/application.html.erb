@@ -7,7 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="container-fluid">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-user"></span>  Users <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Sign up", new_user_path %></li>
+            <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 	<%= yield %>
 </div>
 

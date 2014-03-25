@@ -53,3 +53,13 @@ gem 'carrierwave'
 gem 'bootstrap-sass'
 
 gem 'ejs'
+
+group :test, :development do
+	gem 'rspec-rails', "~> 2.14"
+end
+
+group :test do
+	gem 'capybara', "2.1.0"
+	gem 'factory_girl_rails', '~> 4.4.1'
+	gem 'database_cleaner'
+end
