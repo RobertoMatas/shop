@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
 		end
 		helper_method :current_user
 
+		def sign_in(user_email, pwd)
+			user = User.find_by(:email => user_email)
+			session[:user_id] = user.id if user && user.authenticate(pwd)
+		end
+		helper_method :sign_in
 end
