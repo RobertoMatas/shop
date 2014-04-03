@@ -1,8 +1,17 @@
 class LineItem < ActiveRecord::Base
+	before_save :set_product_price, on: [ :create, :update ]
+
   belongs_to :order
   belongs_to :product
 
-  validates :quantity, :unit_price, :product, presence: true
+  validates :quantity, :product, presence: true
   validates :quantity, numericality: { only_integer: true }
-	validates :unit_price, numericality: true
+
+	protected
+	  def set_product_price
+	    self.unit_price = self.product.price
+	    self.product.stock -= self.quantity
+	    self.product.save!
+	  end
+
 end
