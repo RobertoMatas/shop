@@ -12,6 +12,7 @@ require 'spec_helper'
 		end
 
 		scenario 'User log out' do
+			session[:user_id] = 'an_user_id'
 			visit '/'
 			click_link 'Sign out'
 			expect(page).to have_content("Logged out!")
