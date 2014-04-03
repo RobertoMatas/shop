@@ -12,13 +12,14 @@
           </ul>
         </div>
       <% end %>
-
-      <div class="form-group">
-        <%= f.label :status, class: "col-sm-2 control-label" %>
-        <div class="col-sm-7">
-          <%= f.text_field :status, class: "form-control", size: 255 %>
+      <% unless @order.new_record? %>  
+        <div class="form-group">
+          <%= f.label :status, class: "col-sm-2 control-label" %>
+          <div class="col-sm-7">
+            <%= f.text_field :status, class: "form-control", size: 255 %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="form-group">
         <%= f.label :payment_method, class: "col-sm-2 control-label" %>
         <div class="col-sm-7">
