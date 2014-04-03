@@ -5,7 +5,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.where(nil)
+    filtering_params(params).each do |key, value|
+      @products = @products.public_send(key, value) if value.present?
+    end
   end
 
   # GET /products/1
@@ -71,5 +74,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :description, :stored_at, :manufacturer, :stock, :photo, :photo_cache, :price, :category)
+    end
+
+    # A list of the param names that can be used for filtering the Product list
+    def filtering_params(params)
+      params.slice(:category_is, :stock_gt, :price_lt, :price_gt, :manufacturer_like, :stored_at_after)
     end
 end

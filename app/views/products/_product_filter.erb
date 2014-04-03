@@ -1,0 +1,22 @@
+<div class="row">  
+  <div class="col-md-12">
+    <%= form_tag '/products', {:class => "form-inline", :method => 'get'} do |f| %>
+      <div class="form-group">
+        <%= text_field_tag 'category_is', params[:category_is], class: 'form-control', placeholder: 'Category is' %>
+      </div>
+      <div class="form-group">
+        <%= number_field_tag 'stock_gt', params[:stock_gt], class: 'form-control', placeholder: 'Stock greater than' %>
+      </div>
+      <div class="form-group">
+        <%= number_field_tag 'price_lt', params[:price_lt], class: 'form-control', placeholder: 'Price lower than', step: 0.5 %>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag 'manufacturer_like', params[:manufacturer_like], class: 'form-control', placeholder: 'Manufacturer like' %>
+      </div>
+      <div class="form-group">
+        <%= number_field_tag 'price_gt', params[:price_gt], class: 'form-control', placeholder: 'Price greater than', step: 0.5 %>
+      </div>      
+      <%= submit_tag 'Filter', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
