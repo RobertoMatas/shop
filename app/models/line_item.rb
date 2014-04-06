@@ -10,8 +10,7 @@ class LineItem < ActiveRecord::Base
 	protected
 	  def set_product_price
 	    self.unit_price = self.product.price
-	    self.product.stock -= self.quantity
-	    self.product.save!
+	    self.product.decrement_stock self.quantity
 	  end
 
 end

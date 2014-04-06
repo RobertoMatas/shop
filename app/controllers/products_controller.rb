@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.where(nil)
+    @products = Product.all
     filtering_params(params).each do |key, value|
       @products = @products.public_send(key, value) if value.present?
     end
