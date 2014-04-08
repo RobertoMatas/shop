@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <body>
+		
+		<div>
+		  <h1>Order Detail <small>ID #<%= @order.id %></small></h1>
+		</div>
+
+		<div>
+		  <div>
+		    <h4>Status:</h4>
+		    <p><%= @order.status %></p>
+		  </div>
+
+		  <div>
+		    <h4>Payment method:</h4>
+		    <p><%= @order.payment_method %></p>
+		  </div>
+
+		  <div>
+		    <h4 >Shipping address:</h4>
+		    <p><%= @order.shipping_address %></p>
+		  </div>
+
+		  <div>
+		    <h4>Shipping city:</h4>
+		    <p><%= @order.shipping_city %></p>
+		  </div>
+
+		  <div>
+		    <h4>Customer name:</h4>
+		    <p><%= @order.customer_name %></p>
+		  </div>
+
+		  <div>
+		    <h4>Customer last name:</h4>
+		    <p><%= @order.customer_last_name %></p>
+		  </div>
+
+		  <div>
+		    <h4>Products:</h4>
+		    <table>
+				  <thead>
+				  	<tr>
+					    <th>Product</th>
+					    <th>Unit price</th>
+					    <th>Quantity</th>
+				  	</tr>
+				  </thead>
+				  <tbody>
+				  	<% @order.line_items.each do |line_item| %>
+							<tr>
+							  <td><%= line_item.product.name %></td>
+							  <td><%= line_item.unit_price %></td>
+							  <td><%= line_item.quantity %></td>
+							</tr>
+				  	<% end %>
+					</tbody>
+				</table> 
+		  </div>
+
+		</div>
+	</body>
+
+</html>
