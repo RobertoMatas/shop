@@ -6,7 +6,7 @@
   </td>
   <td><%= product.name %></td>
   <td><%= product.description %></td>
-  <td><%= product.stored_at %></td>
+  <td><%= l product.stored_at, format: :long %></td>
   <td><%= product.manufacturer %></td>
   <td><%= product.category %></td>
   <td><%= product.stock %></td>
@@ -14,17 +14,17 @@
   <td>
       <%= link_to product, class: "btn-sm btn-info" do %>
         <span class="glyphicon glyphicon-list-alt"></span>
-        Show
+        <%= t '.show' %>
       <% end %>
       &nbsp;|&nbsp;
       <%= link_to edit_product_path(product), class: "btn-sm btn-warning" do %>
         <span class="glyphicon glyphicon-edit"></span>
-        Edit
+        <%= t '.edit' %>
       <% end %>
       &nbsp;|&nbsp;
       <%= link_to product, method: :delete, class: "btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
         <span class="glyphicon glyphicon-remove"></span>
-        Destroy
+        <%= t '.delete' %>
       <% end %>
   </td>
 </tr>

@@ -23,7 +23,15 @@ dictionary:
   email: &email "Email"
   name: &name "Name"
   last_name: &last_name "Last Name"
+  description: &description "Description"
   show_link: &show_link "Show"
+  back_link: &back_link "Back"
+  edit_link: &edit_link "Edit"
+  stored_at: &stored_at "Stored at"
+  manufacturer: &manufacturer "Manufacturer"
+  category: &category "Category"
+  stock: &stock "Stock"
+  price: &price "Price"
 
 en:
   helpers:
@@ -38,17 +46,64 @@ en:
       email: *email
       last_name: *last_name
       show: *show_link
-      edit: 'Edit'
+      edit: *edit_link
       new: 'New user'
       delete: 'Destroy'
       confirm: 'Are you sure?'
     new:
       title: 'New User'
-      back: 'Back'
+      back: *back_link
     edit:
       title: 'Editing User'
-      show: 'Show'
-      back: 'Back'
+      show: *show_link
+      back: *back_link
+  products:
+    product:
+      show: *show_link
+      edit: *edit_link
+      back: *back_link
+      delete: 'Destroy'
+      confirm: 'Are you sure?'
+    product_filter:
+      category_filter: 'Category is'
+      stock_filter: 'Stock greater than'
+      price_filter_lt: 'Price lower than'
+      price_filter_gt: 'Price greater than'
+      manufacturer_filter: 'Manufacturer like'
+      stored_at_filter: 'Stored after'
+      submit: 'Filter'
+    index:
+      title: 'Listing Products'
+      new_product: 'New Product'
+      view_orders: 'View Orders'
+      name: *name
+      description: *description
+      stored_at: *stored_at
+      manufacturer: *manufacturer
+      category: *category
+      stock: *stock
+      price: *price
+      image: "Image"
+      actions: 'Actions'
+    show:
+      title: "Product Detail ID#%{product_id}"
+      name: *name
+      description: *description
+      stored_at: *stored_at
+      manufacturer: *manufacturer
+      category: *category
+      stock: *stock
+      price: *price
+      photo: "Photo"
+      edit: *edit_link
+      back: *back_link
+    new:
+      title: "New Product"
+      back: *back_link
+    edit:
+      title: "Editing Product"
+      back: *back_link
+      show: *show_link
   activerecord:
     errors:
       general_message: "%{errors} prohibited this %{model} from being saved:"
@@ -59,13 +114,7 @@ en:
               not_email: "is not an valid email"
     models:
       user: 'User'
-    attributes:
-      user:
-        name: *name
-        email: *email
-        last_name: *last_name
-        password: 'Password'
-        password_confirmation: 'Password confirmation'
+      product: 'Product'
   error_plural:
     one: error
     other: errors

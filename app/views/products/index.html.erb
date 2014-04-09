@@ -1,19 +1,19 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title">Listing Products</h3>
+    <h3 class="panel-title"><%= t '.title' %></h3>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-md-2">
         <%= link_to new_product_path, class: "btn btn-success" do %>
           <span class="glyphicon glyphicon-plus"></span>
-          New Product  
+          <%= t '.new_product' %>
         <% end %>
       </div>
       <div class="col-md-2">
         <%= link_to orders_path, class: "btn btn-info" do %>
           <span class="glyphicon glyphicon-list-alt"></span>
-          View Orders  
+          <%= t '.view_orders' %>
         <% end %>
       </div>
     </div>
@@ -24,15 +24,15 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Stored at</th>
-            <th>Manufacturer</th>
-            <th>Category</th>
-            <th>Stock</th>
-            <th>Price</th>
-            <th>Actions</th>
+            <th><%= t '.image' %></th>
+            <th><%= t '.name' %></th>
+            <th><%= t '.description' %></th>
+            <th><%= t '.stored_at' %></th>
+            <th><%= t '.manufacturer' %></th>
+            <th><%= t '.category' %></th>
+            <th><%= t '.stock' %></th>
+            <th><%= t '.price' %></th>
+            <th><%= t '.actions' %></th>
           </tr>
         </thead>
 

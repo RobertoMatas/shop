@@ -2,25 +2,25 @@
   <div class="col-md-12">
     <%= form_tag '/products', {:class => "form-inline", :method => 'get'} do |f| %>
       <div class="form-group">
-        <%= text_field_tag 'category_is', params[:category_is], class: 'form-control', placeholder: 'Category is' %>
+        <%= text_field_tag 'category_is', params[:category_is], class: 'form-control', placeholder: t('.category_filter') %>
       </div>
       <div class="form-group">
-        <%= number_field_tag 'stock_gt', params[:stock_gt], class: 'form-control', placeholder: 'Stock greater than' %>
+        <%= number_field_tag 'stock_gt', params[:stock_gt], class: 'form-control', placeholder:  t('.stock_filter') %>
       </div>
       <div class="form-group">
-        <%= number_field_tag 'price_lt', params[:price_lt], class: 'form-control', placeholder: 'Price lower than', step: 0.5 %>
+        <%= number_field_tag 'price_lt', params[:price_lt], class: 'form-control', placeholder:  t('.price_filter_lt'), step: 0.5 %>
       </div>
       <div class="form-group">
-        <%= text_field_tag 'manufacturer_like', params[:manufacturer_like], class: 'form-control', placeholder: 'Manufacturer like' %>
+        <%= text_field_tag 'manufacturer_like', params[:manufacturer_like], class: 'form-control', placeholder:  t('.manufacturer_filter') %>
       </div>
       <div class="form-group">
-        <%= number_field_tag 'price_gt', params[:price_gt], class: 'form-control', placeholder: 'Price greater than', step: 0.5 %>
+        <%= number_field_tag 'price_gt', params[:price_gt], class: 'form-control', placeholder:  t('.price_filter_gt'), step: 0.5 %>
       </div>      
       <div class="form-group">
-        <%= label_tag 'stored_at_after', 'Stored after', class: "col-sm-4 control-label" %>
+        <%= label_tag 'stored_at_after',  t('.stored_at_filter'), class: "col-sm-4 control-label" %>
         <%= date_field_tag 'stored_at_after', params[:stored_at_after], class: 'form-control' %>
       </div>
-      <%= submit_tag 'Filter', class: 'btn btn-default' %>
+      <%= submit_tag t('.submit'), class: 'btn btn-default' %>
     <% end %>
   </div>
 </div>

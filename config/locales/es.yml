@@ -23,7 +23,15 @@ dictionary:
   email: &email "Email"
   name: &name "Nombre"
   last_name: &last_name "Apellidos"
+  description: &description "Descripción"
   show_link: &show_link "Mostrar"
+  back_link: &back_link "Volver"
+  edit_link: &edit_link "Editar"
+  stored_at: &stored_at "Registarado en"
+  manufacturer: &manufacturer "Fabricante"
+  category: &category "Categoría"
+  stock: &stock "Unidades"
+  price: &price "Precio"
 
 es:
   helpers:
@@ -31,6 +39,54 @@ es:
       create: "Crear %{model}"
       submit: "Guardar %{model}"
       update: "Actualizar %{model}"
+
+  date:
+    abbr_day_names:
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    abbr_month_names:
+      -
+      - ene
+      - feb
+      - mar
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
+    month_names:
+      -
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    am: am
+    formats:
+      default: ! '%A, %d de %B de %Y %H:%M:%S %z'
+      long: ! '%d de %B de %Y %H:%M'
+      short: ! '%d de %b %H:%M'
   users:
     index:
       title: "Listado de usuarios"
@@ -38,33 +94,84 @@ es:
       email: *email
       last_name: *last_name
       show: *show_link
-      edit: 'Editar'
+      edit: *edit_link
       new: 'Nuevo usuario'
       delete: 'Borrar'
       confirm: '¿Estas seguro?'
     new:
       title: 'Nuevo Usuario'
-      back: 'Volver'
+      back: *back_link
     edit:
       title: 'Edición de Usuario'
       show: 'Mostrar'
-      back: 'Volver'
+      back: *back_link
+  products:
+    product:
+      show: *show_link
+      edit: *edit_link
+      back: *back_link
+      delete: 'Borrar'
+      confirm: '¿Estas seguro?'
+    product_filter:
+      category_filter: 'Categoría es'
+      stock_filter: 'Stock mayor que'
+      price_filter_lt: 'Precio menor que'
+      price_filter_gt: 'Precio mayor que'
+      manufacturer_filter: 'Fabricante'
+      stored_at_filter: 'Almacenado después de'
+      submit: 'Filtrar'
+    index:
+      title: 'Listado de Productos'
+      new_product: 'Nuevo Producto'
+      view_orders: 'Ver Pedidos'
+      name: *name
+      description: *description
+      stored_at: *stored_at
+      manufacturer: *manufacturer
+      category: *category
+      stock: *stock
+      price: *price
+      image: "Imagen"
+      actions: 'Acciones'
+    show:
+      title: "Detalle del producto ID#%{product_id}"
+      name: *name
+      description: *description
+      stored_at: *stored_at
+      manufacturer: *manufacturer
+      category: *category
+      stock: *stock
+      price: *price
+      photo: "Foto"
+      edit: *edit_link
+      back: *back_link
+    new:
+      title: "Nuevo Producto"
+      back: *back_link
+    edit:
+      title: "Edición de Producto"
+      back: *back_link
+      show: *show_link
   activerecord:
-    errors:
-      general_message: "%{errors} para el %{model} ha guardar:"
+    errors: &errores
+      general_message: "%{errors} para el %{model} a guardar:"
+      format: ! '%{attribute} %{message}'
+      messages:
+        blank: no puede estar en blanco
+        confirmation: no coincide con la confirmación
+        equal_to: debe ser igual a %{count}
+        inclusion: no está incluido en la lista
+        not_a_number: no es un número
+        too_short: es demasiado corto (%{count} caracteres mínimo)
+        taken: ya está en uso
       models:
         user:
           attributes:
-            password:
-              blank: 'no puede estar vacío'
-              too_short: 'demasiado corta (el mínimo es de %{count} caracteres)'
-            name:
-              blank: 'no puede estar vacío'
             email:
-              blank: 'no puede estar vacío'
               not_email: "no contiene un email con formato válido"
     models:
       user: 'Usuario'
+      product: 'Producto'
     attributes:
       user:
         name: *name
@@ -72,6 +179,16 @@ es:
         last_name: *last_name
         password: 'Contraseña'
         password_confirmation: 'Confirmación Contraseña'
+      product:
+        name: *name
+        description: *description
+        stored_at: "Registarado en"
+        manufacturer: "Fabricante"
+        category: "Categoría"
+        stock: "Unidades"
+        price: "Precio"
+        photo: "Foto"
+
   error_plural:
     one: error
     other: errores
