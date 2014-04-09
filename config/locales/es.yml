@@ -21,19 +21,19 @@
 
 dictionary:
   email: &email "Email"
-  name: &name "Name"
-  last_name: &last_name "Last Name"
-  show_link: &show_link "Show"
+  name: &name "Nombre"
+  last_name: &last_name "Apellidos"
+  show_link: &show_link "Mostrar"
 
-en:
+es:
   users:
     index:
-      title: "Listing users"
+      title: "Listado de usuarios"
       name: *name
       email: *email
       last_name: *last_name
       show: *show_link
-      edit: 'Edit'
-      new: 'New user'
-      delete: 'Destroy'
-      confirm: 'Are you sure?'
+      edit: 'Editar'
+      new: 'Nuevo usuario'
+      delete: 'Borrar'
+      confirm: '¿Estas seguro?'
