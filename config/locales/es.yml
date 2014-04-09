@@ -26,6 +26,11 @@ dictionary:
   show_link: &show_link "Mostrar"
 
 es:
+  helpers:
+    submit:
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualizar %{model}"
   users:
     index:
       title: "Listado de usuarios"
@@ -37,3 +42,36 @@ es:
       new: 'Nuevo usuario'
       delete: 'Borrar'
       confirm: '¿Estas seguro?'
+    new:
+      title: 'Nuevo Usuario'
+      back: 'Volver'
+    edit:
+      title: 'Edición de Usuario'
+      show: 'Mostrar'
+      back: 'Volver'
+  activerecord:
+    errors:
+      general_message: "%{errors} para el %{model} ha guardar:"
+      models:
+        user:
+          attributes:
+            password:
+              blank: 'no puede estar vacío'
+              too_short: 'demasiado corta (el mínimo es de %{count} caracteres)'
+            name:
+              blank: 'no puede estar vacío'
+            email:
+              blank: 'no puede estar vacío'
+              not_email: "no contiene un email con formato válido"
+    models:
+      user: 'Usuario'
+    attributes:
+      user:
+        name: *name
+        email: *email
+        last_name: *last_name
+        password: 'Contraseña'
+        password_confirmation: 'Confirmación Contraseña'
+  error_plural:
+    one: error
+    other: errores

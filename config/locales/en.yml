@@ -26,6 +26,11 @@ dictionary:
   show_link: &show_link "Show"
 
 en:
+  helpers:
+    submit:
+      create: "Create %{model}"
+      submit: "Save %{model}"
+      update: "Update %{model}"
   users:
     index:
       title: "Listing users"
@@ -37,3 +42,30 @@ en:
       new: 'New user'
       delete: 'Destroy'
       confirm: 'Are you sure?'
+    new:
+      title: 'New User'
+      back: 'Back'
+    edit:
+      title: 'Editing User'
+      show: 'Show'
+      back: 'Back'
+  activerecord:
+    errors:
+      general_message: "%{errors} prohibited this %{model} from being saved:"
+      models:
+        user:
+          attributes:
+            email:
+              not_email: "is not an valid email"
+    models:
+      user: 'User'
+    attributes:
+      user:
+        name: *name
+        email: *email
+        last_name: *last_name
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+  error_plural:
+    one: error
+    other: errors
