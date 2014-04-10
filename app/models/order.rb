@@ -1,13 +1,10 @@
 class Order < ActiveRecord::Base
-	ALLOW_STATUS = ['Pendiente', 'Enviado', 'Recibido']
-	ALLOW_PAYMENT_METHODS = ['en efectivo', 'tarjeta', 'paypal']
-
 	before_create :set_order_status
 
 	validates :customer_name, :customer_last_name, :shipping_address, :shipping_city, :payment_method, presence: true
-	validates :payment_method, inclusion: { in: ALLOW_PAYMENT_METHODS, message: "must be in #{ALLOW_PAYMENT_METHODS.join(', ')}" }
+	validates :payment_method, inclusion: { in: :allowed_payment_methods }
 	validates :status, presence: true, 
-			inclusion: { in: ALLOW_STATUS, message: "must be in #{ALLOW_STATUS.join(', ')}" }, 
+			inclusion: { in: :allowed_status }, 
 			on: :update
 
 	has_many :line_items
@@ -19,5 +16,10 @@ class Order < ActiveRecord::Base
 		def set_order_status
 			self.status = 'Pendiente'
 		end
-
+		def allowed_status
+			I18n.t 'order_special_fields.allowed_status'
+		end
+		def allowed_payment_methods
+			I18n.t 'order_special_fields.allowed_payment_methods'
+		end
 end

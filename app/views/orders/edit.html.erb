@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Edit Order</h3>
+    <h3 class="panel-title"><%= t '.title' %></h3>
   </div>
 
 <%= render 'form' %>
@@ -11,13 +11,13 @@
 	<div class="col-sm-1 col-sm-offset-1">
 		<%= link_to orders_path do %>
 			<span class="glyphicon glyphicon-chevron-left"></span>
-			Back
+			<%= t '.back' %>
 		<% end %>
 	</div>
 	<div class="col-sm-1">
 		<%= link_to @order do %>
 			<span class="glyphicon glyphicon-pushpin"></span>
-			Show
+			<%= t '.show' %>
 		<% end %>
 	</div>
 </div>

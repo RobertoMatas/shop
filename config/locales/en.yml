@@ -30,6 +30,7 @@ dictionary:
   edit_link: &edit_link "Edit"
   delete_link: &delete_link "Destroy"
   stored_at: &stored_at "Stored at"
+  image: &image "Image"
   manufacturer: &manufacturer "Manufacturer"
   category: &category "Category"
   stock: &stock "Stock"
@@ -103,7 +104,7 @@ en:
       category: *category
       stock: *stock
       price: *price
-      image: "Image"
+      image: *image
       actions: *actions
     show:
       title: "Product Detail ID#%{product_id}"
@@ -139,11 +140,35 @@ en:
       show: *show_link
       delete: *delete_link
       edit: *edit_link
+    form:
+      submit: "Save Order"
+      add_product: "Add Product"
+    edit:
+      title: "Edit Order"
+      back: *back_link
+      show: *show_link
+    new:
+      title: "New Order"
+      back: *back_link
+    show:
+      title_html: "Order Detail <small>ID#%{order_id}</small>"
+      status: *status
+      payment_method: *payment_method
+      shipping_address: *shipping_address
+      shipping_city: *shipping_city
+      cust_name: *cust_name
+      cust_last_name: *cust_last_name
+      products: "Products"
+      edit: *edit_link
+      back: *back_link
+    show_line_items_fields:
+      image: *image
+      product: "Product"
+      unit_price: "Unit Price"
+      quantity: "Quantity"
   activerecord:
     errors:
       general_message: "%{errors} prohibited this %{model} from being saved:"
-      messages:
-        inclusion: not included in list (%{list})
       models:
         user:
           attributes:
@@ -164,6 +189,15 @@ en:
       - food
       - 'music & films'
       - electronic
+  order_special_fields:
+    allowed_status:
+      - Pending
+      - Shipped
+      - Received
+    allowed_payment_methods:
+      - cash
+      - 'credit card'
+      - paypal
   greet_user: "Hello, %{user}"
   sign_in: "Sign in"
   sign_up: "Sign up"

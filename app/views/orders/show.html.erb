@@ -1,41 +1,41 @@
 <div class="page-header">
-  <h1>Order Detail <small>ID #<%= @order.id %></small></h1>
+  <h1><%= t '.title_html', order_id: @order.id %></h1>
 </div>
 
 <div class="list-group">
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Status:</h4>
+    <h4 class="list-group-item-heading"><%= t '.status' %>:</h4>
     <p class="list-group-item-text"><%= @order.status %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Payment method:</h4>
+    <h4 class="list-group-item-heading"><%= t '.payment_method' %>:</h4>
     <p class="list-group-item-text"><%= @order.payment_method %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Shipping address:</h4>
+    <h4 class="list-group-item-heading"><%= t '.shipping_address' %>:</h4>
     <p class="list-group-item-text"><%= @order.shipping_address %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Shipping city:</h4>
+    <h4 class="list-group-item-heading"><%= t '.shipping_city' %>:</h4>
     <p class="list-group-item-text"><%= @order.shipping_city %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Customer name:</h4>
+    <h4 class="list-group-item-heading"><%= t '.cust_name' %>:</h4>
     <p class="list-group-item-text"><%= @order.customer_name %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Customer last name:</h4>
+    <h4 class="list-group-item-heading"><%= t '.cust_last_name' %>:</h4>
     <p class="list-group-item-text"><%= @order.customer_last_name %></p>
   </div>
 
   <div class="list-group-item active">
-    <h4 class="list-group-item-heading">Products:</h4>
+    <h4 class="list-group-item-heading"><%= t '.products' %>:</h4>
     <%= render 'show_line_items_fields' %> 
   </div>
 
@@ -45,13 +45,13 @@
   <div class="col-sm-1 col-sm-offset-1">
     <%= link_to orders_path do %>
       <span class="glyphicon glyphicon-chevron-left"></span>
-      Back
+      <%= t '.back' %>
     <% end %>
   </div>
   <div class="col-sm-1">
     <%= link_to edit_order_path @order do %>
       <span class="glyphicon glyphicon-edit"></span>
-      Edit
+      <%= t '.edit' %>
     <% end %>
   </div>
 </div>

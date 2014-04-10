@@ -61,13 +61,13 @@
               <div class="col-sm-10">
                 <button type="button" class="btn btn-success" id="add_line_items_field" data-index-start-at='<%= @order.line_items.size %>'>
                   <span class="glyphicon glyphicon-plus"></span>
-                  Add Product
+                  <%= t '.add_product' %>
                 </button>
               </div>
           </div>
         <button type="submit" name="commit" class="btn btn-primary">
           <span class="glyphicon glyphicon-check"></span>
-          Save Order
+          <%= t '.submit' %>
         </button>
       </div>
     </div>

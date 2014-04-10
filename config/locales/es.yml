@@ -30,11 +30,12 @@ dictionary:
   edit_link: &edit_link "Editar"
   delete_link: &delete_link "Destroy"
   stored_at: &stored_at "Registarado en"
+  image: &image "Imagen"
   manufacturer: &manufacturer "Fabricante"
   category: &category "Categoría"
   stock: &stock "Unidades"
   price: &price "Precio"
-  actions: &actions 'Actions'
+  actions: &actions 'Acciones'
   status: &status "Estado"
   payment_method: &payment_method "Método de pago"
   shipping_address: &shipping_address "Dirección de envío"
@@ -151,7 +152,7 @@ es:
       category: *category
       stock: *stock
       price: *price
-      image: "Imagen"
+      image: *image
       actions: 'Acciones'
     show:
       title: "Detalle del producto ID#%{product_id}"
@@ -186,16 +187,42 @@ es:
       actions: *actions
       show: *show_link
       delete: *delete_link
-      edit: *edit_link  
+      edit: *edit_link
+    show:
+      title_html: "Detalle de Pedido <small>ID#%{order_id}</small>"
+      status: *status
+      payment_method: *payment_method
+      shipping_address: *shipping_address
+      shipping_city: *shipping_city
+      cust_name: *cust_name
+      cust_last_name: *cust_last_name
+      products: "Productos"
+      edit: *edit_link
+      back: *back_link
+    show_line_items_fields:
+      image: *image
+      product: "Producto"
+      unit_price: "Precio unitario"
+      quantity: "Cantidad"
+    form:
+      submit: "Guardar Pedido"
+      add_product: "Añadir Línea de Pedido"
+    edit:
+      title: "Edición de Pedido"
+      back: *back_link
+      show: *show_link
+    new:
+      title: "Nuevo Pedido"
+      back: *back_link
   activerecord:
     errors: &errores
       general_message: "%{errors} para el %{model} a guardar:"
-      format: ! '%{attribute} %{message}'
+      #format: ! '%{attribute} %{message}'
       messages:
         blank: no puede estar en blanco
         confirmation: no coincide con la confirmación
         equal_to: debe ser igual a %{count}
-        inclusion: no está incluido en la lista (%{list})
+        inclusion: no está incluido en la lista
         not_a_number: no es un número
         too_short: es demasiado corto (%{count} caracteres mínimo)
         taken: ya está en uso
@@ -207,6 +234,8 @@ es:
     models:
       user: 'Usuario'
       product: 'Producto'
+      order: 'Pedido'
+      line_item: 'Línea de Pedido'
     attributes:
       user:
         name: *name
@@ -223,7 +252,16 @@ es:
         stock: "Unidades"
         price: "Precio"
         photo: "Foto"
-
+      order:
+        status: *status
+        payment_method: *payment_method
+        shipping_address: *shipping_address
+        shipping_city: *shipping_city
+        customer_name: *cust_name
+        customer_last_name: *cust_last_name
+      line_item:
+        product: "Producto"
+        quantity: "Cantidad"
   error_plural:
     one: error
     other: errores
@@ -236,6 +274,15 @@ es:
       - comestibles
       - 'música & películas'
       - electrónica
+  order_special_fields:
+    allowed_status:
+      - Pendiente
+      - Enviado
+      - Recibido
+    allowed_payment_methods:
+      - 'en efectivo'
+      - tarjeta
+      - paypal
   greet_user: "Hola, %{user}"
   sign_in: "Entrar"
   sign_up: "Registrarse"
