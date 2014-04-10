@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shop</title>
+  <title><%= t :app_title %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -13,18 +13,18 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <% unless @current_user.blank? %>
-          <li><a class="navbar-brand" href="#">Hello, <%= @current_user.name %></a></li>
+          <li><a class="navbar-brand" href="#"><%= t 'greet_user', user: @current_user.name %></a></li>
         <% end %>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="glyphicon glyphicon-user"></span>  Users <span class="caret"></span>
+            <span class="glyphicon glyphicon-user"></span>  <%= t :sign_menu %> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
             <% if @current_user.nil? %>
-              <li><%= link_to "Sign up", new_user_path %></li>
-              <li><%= link_to "Sign in", signin_path %></li>
+              <li><%= link_to t('sign_up'), new_user_path %></li>
+              <li><%= link_to t('sign_in'), signin_path %></li>
             <% else %>
-              <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+              <li><%= link_to t('sign_out'), signout_path, method: :delete %></li>
             <% end %>
           </ul>
         </li>
@@ -38,6 +38,19 @@
     <div class="alert alert-danger"><%= flash[:error] %></div>
   <% end %>
 	<%= yield %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <%= t :lang_menu %> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to t('lang_es'), url_for( :locale => 'es' ) %></li>
+          <li><%= link_to t('lang_en'), url_for( :locale => 'en' ) %></li>
+        </ul>
+      </ul>
+    </div>
+  </div>
 </div>
 
 </body>

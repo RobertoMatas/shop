@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Product < ActiveRecord::Base
-	ALLOWED_CATEGORIES = ['libros', 'hogar', 'juguetes', 'ropa', 'comestibles', 'música & películas', 'electrónica']
+	ALLOWED_CATEGORIES = I18n.t('product_special_fields.allowed_categories')
 
 	scope :category_is, ->(category) { where category: category }
 	scope :stock_gt, ->(stock) { where('stock > ?', stock) }
@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
 	validates :stock, numericality: { only_integer: true }
 	validates :price, numericality: true
 	validates :category, inclusion: { in: ALLOWED_CATEGORIES,
-			message: "must be in #{ALLOWED_CATEGORIES.join(', ')}" }, allow_blank: true
+			message: I18n.t('activerecord.errors.messages.inclusion', list: ALLOWED_CATEGORIES.join(', ')) }, allow_blank: true
 	validates :name, uniqueness: true
 
 	has_many :line_items

@@ -4,16 +4,16 @@ class SessionsController < ApplicationController
 	def create
 		sign_in params[:signin][:email], params[:signin][:password]
 		if current_user.nil?
-		 	flash[:error] = "User or password incorrect."
+		 	flash[:error] = t('.error')
 			render :new
 		else
-			redirect_to root_url, :notice => 'Signed in successfully.'
+			redirect_to root_url, :notice => t('.success')
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
-		redirect_to signin_path, :notice => 'Logged out!'
+		redirect_to signin_path, :notice => t('.success')
 	end
 
 end

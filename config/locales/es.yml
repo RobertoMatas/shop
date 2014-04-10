@@ -22,16 +22,25 @@
 dictionary:
   email: &email "Email"
   name: &name "Nombre"
+  password:  &password "Contraseña"
   last_name: &last_name "Apellidos"
   description: &description "Descripción"
   show_link: &show_link "Mostrar"
   back_link: &back_link "Volver"
   edit_link: &edit_link "Editar"
+  delete_link: &delete_link "Destroy"
   stored_at: &stored_at "Registarado en"
   manufacturer: &manufacturer "Fabricante"
   category: &category "Categoría"
   stock: &stock "Unidades"
   price: &price "Precio"
+  actions: &actions 'Actions'
+  status: &status "Estado"
+  payment_method: &payment_method "Método de pago"
+  shipping_address: &shipping_address "Dirección de envío"
+  shipping_city: &shipping_city "Ciudad"
+  cust_name: &cust_name "Nombre del cliente"
+  cust_last_name: &cust_last_name "Apellidos"
 
 es:
   helpers:
@@ -87,6 +96,17 @@ es:
       default: ! '%A, %d de %B de %Y %H:%M:%S %z'
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
+  sessions:
+    new:
+      title: "Por favor, ingrese sus credenciales"
+      email: *email
+      password: *password
+      submit: "Entrar"
+    create:
+      success: 'Has entrado correcamente'
+      error: "Usuario o contraseña incorrecto."
+    destroy:
+      success: 'Has salido correcamente'
   users:
     index:
       title: "Listado de usuarios"
@@ -96,7 +116,7 @@ es:
       show: *show_link
       edit: *edit_link
       new: 'Nuevo usuario'
-      delete: 'Borrar'
+      delete: *delete_link
       confirm: '¿Estas seguro?'
     new:
       title: 'Nuevo Usuario'
@@ -110,7 +130,7 @@ es:
       show: *show_link
       edit: *edit_link
       back: *back_link
-      delete: 'Borrar'
+      delete: *delete_link
       confirm: '¿Estas seguro?'
     product_filter:
       category_filter: 'Categoría es'
@@ -152,6 +172,21 @@ es:
       title: "Edición de Producto"
       back: *back_link
       show: *show_link
+  orders:
+    index:
+      title: 'Listado de pedidos'
+      new_order_link: 'Nuevo Pedido'
+      view_products_link: 'Ver Productos'
+      status: *status
+      payment_method: *payment_method
+      shipping_address: *shipping_address
+      shipping_city: *shipping_city
+      cust_name: *cust_name
+      cust_last_name: *cust_last_name
+      actions: *actions
+      show: *show_link
+      delete: *delete_link
+      edit: *edit_link  
   activerecord:
     errors: &errores
       general_message: "%{errors} para el %{model} a guardar:"
@@ -160,7 +195,7 @@ es:
         blank: no puede estar en blanco
         confirmation: no coincide con la confirmación
         equal_to: debe ser igual a %{count}
-        inclusion: no está incluido en la lista
+        inclusion: no está incluido en la lista (%{list})
         not_a_number: no es un número
         too_short: es demasiado corto (%{count} caracteres mínimo)
         taken: ya está en uso
@@ -177,7 +212,7 @@ es:
         name: *name
         email: *email
         last_name: *last_name
-        password: 'Contraseña'
+        password: *password
         password_confirmation: 'Confirmación Contraseña'
       product:
         name: *name
@@ -192,3 +227,25 @@ es:
   error_plural:
     one: error
     other: errores
+  product_special_fields:
+    allowed_categories:
+      - libros
+      - hogar
+      - juguetes
+      - ropa
+      - comestibles
+      - 'música & películas'
+      - electrónica
+  greet_user: "Hola, %{user}"
+  sign_in: "Entrar"
+  sign_up: "Registrarse"
+  sign_out: "Salir"
+  sign_menu: "Usuarios"
+  lang_menu: "Lenguaje"
+  lang_en: "Inglés"
+  lang_es: "Español"
+  app_title: "Tienda en Rails"
+  application:
+    errors:
+      need_logged: "Es necesario estar logado o darse de alta para ver la página solicitada."
+      yet_logged: "Ya te encuentras logado, sal de la aplicación para ver la página solicitada."

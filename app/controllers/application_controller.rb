@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 	private
 		def require_signin!
 			if current_user.nil?
-				flash[:error] =	"You need to sign in or sign up before continuing."
+				flash[:error] =	t 'application.errors.need_logged' 
 				redirect_to signin_url
 			end
 		end
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 		
 		def require_not_signin!
 			unless current_user.nil?
-				flash[:error] =	"You are already logged, please sign out before if you want continue"
+				flash[:error] =	t 'application.errors.yet_logged' 
 				redirect_to root_url
 			end
 		end

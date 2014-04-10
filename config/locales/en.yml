@@ -22,16 +22,25 @@
 dictionary:
   email: &email "Email"
   name: &name "Name"
+  password:  &password "Password"
   last_name: &last_name "Last Name"
   description: &description "Description"
   show_link: &show_link "Show"
   back_link: &back_link "Back"
   edit_link: &edit_link "Edit"
+  delete_link: &delete_link "Destroy"
   stored_at: &stored_at "Stored at"
   manufacturer: &manufacturer "Manufacturer"
   category: &category "Category"
   stock: &stock "Stock"
   price: &price "Price"
+  actions: &actions 'Actions'
+  status: &status "Status"
+  payment_method: &payment_method "Payment Method"
+  shipping_address: &shipping_address "Shipping Address"
+  shipping_city: &shipping_city "Shipping City"
+  cust_name: &cust_name "Customer name"
+  cust_last_name: &cust_last_name "Customer Last name"
 
 en:
   helpers:
@@ -39,6 +48,17 @@ en:
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+  sessions:
+    new:
+      title: "Please Sign in"
+      email: *email
+      password: *password
+      submit: "Sign in"
+    create:
+      success: 'Signed in successfully.'
+      error: "User or password incorrect."
+    destroy:
+      success: 'Logged out!'
   users:
     index:
       title: "Listing users"
@@ -48,7 +68,7 @@ en:
       show: *show_link
       edit: *edit_link
       new: 'New user'
-      delete: 'Destroy'
+      delete: *delete_link
       confirm: 'Are you sure?'
     new:
       title: 'New User'
@@ -62,7 +82,7 @@ en:
       show: *show_link
       edit: *edit_link
       back: *back_link
-      delete: 'Destroy'
+      delete: *delete_link
       confirm: 'Are you sure?'
     product_filter:
       category_filter: 'Category is'
@@ -84,7 +104,7 @@ en:
       stock: *stock
       price: *price
       image: "Image"
-      actions: 'Actions'
+      actions: *actions
     show:
       title: "Product Detail ID#%{product_id}"
       name: *name
@@ -104,9 +124,26 @@ en:
       title: "Editing Product"
       back: *back_link
       show: *show_link
+  orders:
+    index:
+      title: 'Listing Orders'
+      new_order_link: 'New Order'
+      view_products_link: 'View Products'
+      status: *status
+      payment_method: *payment_method
+      shipping_address: *shipping_address
+      shipping_city: *shipping_city
+      cust_name: *cust_name
+      cust_last_name: *cust_last_name
+      actions: *actions
+      show: *show_link
+      delete: *delete_link
+      edit: *edit_link
   activerecord:
     errors:
       general_message: "%{errors} prohibited this %{model} from being saved:"
+      messages:
+        inclusion: not included in list (%{list})
       models:
         user:
           attributes:
@@ -118,3 +155,25 @@ en:
   error_plural:
     one: error
     other: errors
+  product_special_fields:
+    allowed_categories:
+      - books
+      - home
+      - toys
+      - wear
+      - food
+      - 'music & films'
+      - electronic
+  greet_user: "Hello, %{user}"
+  sign_in: "Sign in"
+  sign_up: "Sign up"
+  sign_out: "Sign out"
+  sign_menu: "Users"
+  lang_menu: "Language"
+  lang_en: "English"
+  lang_es: "Spanish"
+  app_title: "Rails Shop"
+  application:
+    errors:
+      need_logged: "You need to sign in or sign up before continuing."
+      yet_logged: "You are already logged, please sign out before if you want continue."
