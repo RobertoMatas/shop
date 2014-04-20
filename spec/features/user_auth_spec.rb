@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-	feature "User Authentication" do
+	feature "User Session Management" do
 		scenario 'Signing in via form' do
 			user = FactoryGirl.create(:user)
 			visit '/'
@@ -12,7 +12,8 @@ require 'spec_helper'
 		end
 
 		scenario 'User log out' do
-			session[:user_id] = 'an_user_id'
+			user = FactoryGirl.create(:user)
+			page.set_rack_session(:user_id => user.id)
 			visit '/'
 			click_link 'Sign out'
 			expect(page).to have_content("Logged out!")
@@ -20,7 +21,7 @@ require 'spec_helper'
 
 		scenario 'Not logged user is redirected to signin_url with a info message when access to protected area' do
 			visit '/orders'
-			expect(page.current_url).to eql(signin_url)
+			expect(page.current_url).to match(signin_url)
 			expect(page).to have_content('You need to sign in or sign up before continuing')
 		end
 
