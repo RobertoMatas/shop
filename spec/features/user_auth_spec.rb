@@ -2,7 +2,7 @@ require 'spec_helper'
 
 	feature "User Session Management" do
 		scenario 'Signing in via form' do
-			user = FactoryGirl.create(:user)
+			user = create(:user)
 			visit '/'
 			click_link 'Sign in'
 			fill_in 'Email', with: user.email
@@ -12,7 +12,7 @@ require 'spec_helper'
 		end
 
 		scenario 'User log out' do
-			user = FactoryGirl.create(:user)
+			user = create(:user)
 			page.set_rack_session(:user_id => user.id)
 			visit '/'
 			click_link 'Sign out'
