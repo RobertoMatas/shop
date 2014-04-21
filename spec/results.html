@@ -1,0 +1,854 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <title>RSpec results</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-size: 80%;
+  }
+  </style>
+  <script type="text/javascript">
+    // <![CDATA[
+
+function addClass(element_id, classname) {
+  document.getElementById(element_id).className += (" " + classname);
+}
+
+function removeClass(element_id, classname) {
+  var elem = document.getElementById(element_id);
+  var classlist = elem.className.replace(classname,'');
+  elem.className = classlist;
+}
+
+function moveProgressBar(percentDone) {
+  document.getElementById("rspec-header").style.width = percentDone +"%";
+}
+
+function makeRed(element_id) {
+  removeClass(element_id, 'passed');
+  removeClass(element_id, 'not_implemented');
+  addClass(element_id,'failed');
+}
+
+function makeYellow(element_id) {
+  var elem = document.getElementById(element_id);
+  if (elem.className.indexOf("failed") == -1) {  // class doesn't includes failed
+    if (elem.className.indexOf("not_implemented") == -1) { // class doesn't include not_implemented
+      removeClass(element_id, 'passed');
+      addClass(element_id,'not_implemented');
+    }
+  }
+}
+
+function apply_filters() {
+  var passed_filter = document.getElementById('passed_checkbox').checked;
+  var failed_filter = document.getElementById('failed_checkbox').checked;
+  var pending_filter = document.getElementById('pending_checkbox').checked;
+
+  assign_display_style("example passed", passed_filter);
+  assign_display_style("example failed", failed_filter);
+  assign_display_style("example not_implemented", pending_filter);
+
+  assign_display_style_for_group("example_group passed", passed_filter);
+  assign_display_style_for_group("example_group not_implemented", pending_filter, pending_filter || passed_filter);
+  assign_display_style_for_group("example_group failed", failed_filter, failed_filter || pending_filter || passed_filter);
+}
+
+function get_display_style(display_flag) {
+  var style_mode = 'none';
+  if (display_flag == true) {
+    style_mode = 'block';
+  }
+  return style_mode;
+}
+
+function assign_display_style(classname, display_flag) {
+  var style_mode = get_display_style(display_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    elems[i].style.display = style_mode;
+  }
+}
+
+function assign_display_style_for_group(classname, display_flag, subgroup_flag) {
+  var display_style_mode = get_display_style(display_flag);
+  var subgroup_style_mode = get_display_style(subgroup_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    var style_mode = display_style_mode;
+    if ((display_flag != subgroup_flag) && (elems[i].getElementsByTagName('dt')[0].innerHTML.indexOf(", ") != -1)) {
+      elems[i].style.display = subgroup_style_mode;
+    } else {
+      elems[i].style.display = display_style_mode;
+    }
+  }
+}
+
+    // ]]>
+  </script>
+  <style type="text/css">
+#rspec-header {
+  background: #65C400; color: #fff; height: 4em;
+}
+
+.rspec-report h1 {
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  font-size: 1.8em;
+  position: absolute;
+}
+
+#label {
+  float:left;
+}
+
+#display-filters {
+  float:left;
+  padding: 28px 0 0 40%;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+}
+
+#summary {
+  float:right;
+  padding: 5px 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  text-align: right;
+}
+
+#summary p {
+  margin: 0 0 0 2px;
+}
+
+#summary #totals {
+  font-size: 1.2em;
+}
+
+.example_group {
+  margin: 0 10px 5px;
+  background: #fff;
+}
+
+dl {
+  margin: 0; padding: 0 0 5px;
+  font: normal 11px "Lucida Grande", Helvetica, sans-serif;
+}
+
+dt {
+  padding: 3px;
+  background: #65C400;
+  color: #fff;
+  font-weight: bold;
+}
+
+dd {
+  margin: 5px 0 5px 5px;
+  padding: 3px 3px 3px 18px;
+}
+
+dd .duration {
+  padding-left: 5px;
+  text-align: right;
+  right: 0px;
+  float:right;
+}
+
+dd.example.passed {
+  border-left: 5px solid #65C400;
+  border-bottom: 1px solid #65C400;
+  background: #DBFFB4; color: #3D7700;
+}
+
+dd.example.not_implemented {
+  border-left: 5px solid #FAF834;
+  border-bottom: 1px solid #FAF834;
+  background: #FCFB98; color: #131313;
+}
+
+dd.example.pending_fixed {
+  border-left: 5px solid #0000C2;
+  border-bottom: 1px solid #0000C2;
+  color: #0000C2; background: #D3FBFF;
+}
+
+dd.example.failed {
+  border-left: 5px solid #C20000;
+  border-bottom: 1px solid #C20000;
+  color: #C20000; background: #FFFBD3;
+}
+
+
+dt.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+dt.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+dt.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+#rspec-header.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+#rspec-header.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+#rspec-header.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+.backtrace {
+  color: #000;
+  font-size: 12px;
+}
+
+a {
+  color: #BE5C00;
+}
+
+/* Ruby code, style similar to vibrant ink */
+.ruby {
+  font-size: 12px;
+  font-family: monospace;
+  color: white;
+  background-color: black;
+  padding: 0.1em 0 0.2em 0;
+}
+
+.ruby .keyword { color: #FF6600; }
+.ruby .constant { color: #339999; }
+.ruby .attribute { color: white; }
+.ruby .global { color: white; }
+.ruby .module { color: white; }
+.ruby .class { color: white; }
+.ruby .string { color: #66FF00; }
+.ruby .ident { color: white; }
+.ruby .method { color: #FFCC00; }
+.ruby .number { color: white; }
+.ruby .char { color: white; }
+.ruby .comment { color: #9933CC; }
+.ruby .symbol { color: white; }
+.ruby .regex { color: #44B4CC; }
+.ruby .punct { color: white; }
+.ruby .escape { color: white; }
+.ruby .interp { color: white; }
+.ruby .expr { color: white; }
+
+.ruby .offending { background-color: gray; }
+.ruby .linenum {
+  width: 75px;
+  padding: 0.1em 1em 0.2em 0;
+  color: #000000;
+  background-color: #FFFBD3;
+}
+
+  </style>
+</head>
+<body>
+<div class="rspec-report">
+
+<div id="rspec-header">
+  <div id="label">
+    <h1>RSpec Code Examples</h1>
+  </div>
+
+  <div id="display-filters">
+    <input id="passed_checkbox"  name="passed_checkbox"  type="checkbox" checked="checked" onchange="apply_filters()" value="1" /> <label for="passed_checkbox">Passed</label>
+    <input id="failed_checkbox"  name="failed_checkbox"  type="checkbox" checked="checked" onchange="apply_filters()" value="2" /> <label for="failed_checkbox">Failed</label>
+    <input id="pending_checkbox" name="pending_checkbox" type="checkbox" checked="checked" onchange="apply_filters()" value="3" /> <label for="pending_checkbox">Pending</label>
+  </div>
+
+  <div id="summary">
+    <p id="totals">&#160;</p>
+    <p id="duration">&#160;</p>
+  </div>
+</div>
+
+
+<div class="results">
+  [1m[35m (0.0ms)[0m  ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "line_items" DISABLE TRIGGER ALL;ALTER TABLE "orders" DISABLE TRIGGER ALL;ALTER TABLE "products" DISABLE TRIGGER ALL
+  [1m[36m (15.6ms)[0m  [1mselect table_name from information_schema.views where table_schema = 'concejalia'[0m
+  [1m[35m (93.8ms)[0m  TRUNCATE TABLE "users", "line_items", "orders", "products" RESTART IDENTITY CASCADE;
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "line_items" ENABLE TRIGGER ALL;ALTER TABLE "orders" ENABLE TRIGGER ALL;ALTER TABLE "products" ENABLE TRIGGER ALL[0m
+<div id="div_group_1" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_1" class="passed">Product</dt>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('3.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a numerical stock</span><span class='duration'>0.15625s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('7.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a numerical price</span><span class='duration'>0.00000s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (15.6ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('10.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a price</span><span class='duration'>0.01562s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 10], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mSQL (0.0ms)[0m  UPDATE "products" SET "stock" = 3 WHERE "products"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('14.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">decrement stock substracts a quantity at current stock</span><span class='duration'>0.06250s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('17.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a stock</span><span class='duration'>0.01562s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" IS NULL LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('21.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a name</span><span class='duration'>0.00000s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('25.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a permit category</span><span class='duration'>0.00000s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (15.6ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('28.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid with a duplicate name</span><span class='duration'>0.01562s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('32.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">is invalid without a date of storage</span><span class='duration'>0.00000s</span></dd>
+  </dl>
+</div>
+<div id="div_group_2" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_2" class="passed">Filter by category</dt>
+  </dl>
+</div>
+<div id="div_group_3" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_3" class="passed">matching categories</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 1 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 1 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 2 name' LIMIT 1
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 2 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 3 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 3 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 4 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 4 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 5 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 5 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 6 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 6 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 7 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 7 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 8 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 8 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "products" WHERE "products"."category" = 'food'
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('35.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">return all products with food category</span><span class='duration'>0.03125s</span></dd>
+  </dl>
+</div>
+<div id="div_group_4" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_4" class="passed">non-matching categories</dt>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 9 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 9 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 10 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 10 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 11 name' LIMIT 1[0m
+  [1m[35mSQL (15.6ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 11 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 12 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 12 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 13 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "food"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 13 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 14 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 14 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 15 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 15 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 16 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("category", "created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["category", "books"], ["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 16 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "products" WHERE "products"."category" = 'wear'[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('39.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">return nothing</span><span class='duration'>0.03125s</span></dd>
+  </dl>
+</div>
+<div id="div_group_5" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_5" class="passed">Filter by price</dt>
+  </dl>
+</div>
+<div id="div_group_6" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_6" class="passed">price between than</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 17 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 17 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 18 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 18 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 19 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 19 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 20 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 20 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 21 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 21 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 22 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 22 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 23 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 23 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 24 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 24 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 25 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 25 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 26 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 26 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 27 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 27 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 28 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 28 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 29 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 29 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 30 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 30 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 31 name' LIMIT 1
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 31 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 32 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 32 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 33 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 33 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 34 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 34 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "products" WHERE (price > 6) AND (price < 20)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('42.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">return product in a price range</span><span class='duration'>0.04688s</span></dd>
+  </dl>
+</div>
+<div id="div_group_7" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_7" class="passed">price lower than</dt>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 35 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 35 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 36 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 36 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 37 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 37 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 38 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 38 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 39 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 39 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 40 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 40 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 41 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 41 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 42 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 42 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 43 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 43 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 44 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 44 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 45 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 45 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 46 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 46 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 47 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 47 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 48 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 48 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 49 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 49 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 50 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 50 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 51 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 51 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 52 name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 52 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "products" WHERE (price < 5.3)[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('46.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">return only product under a price</span><span class='duration'>0.06250s</span></dd>
+  </dl>
+</div>
+<div id="div_group_8" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_8" class="passed">price greater than</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 53 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 53 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 54 name' LIMIT 1
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 54 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 55 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 55 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 56 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 56 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 57 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 57 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 58 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 58 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 59 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 59 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 60 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 60 name"], ["price", 20.75], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 61 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 61 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 62 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 62 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 63 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 63 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 64 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 64 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 65 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 65 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 66 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 66 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 67 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 67 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 68 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 68 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 69 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 69 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 70 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00], ["name", "Product 70 name"], ["price", 5.25], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:31:59 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "products" WHERE (price > 10.49)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('50.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">return only product above a price</span><span class='duration'>0.06250s</span></dd>
+  </dl>
+</div>
+<div id="div_group_9" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_9" class="passed">User Session Management</dt>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+Started GET "/orders" for 127.0.0.1 at 2014-04-21 13:31:59 +0200
+Processing by OrdersController#index as HTML
+Redirected to http://www.example.com/signin?locale=en
+Filter chain halted as :require_signin! rendered or redirected
+Completed 302 Found in 125ms (ActiveRecord: 0.0ms)
+Started GET "/signin?locale=en" for 127.0.0.1 at 2014-04-21 13:31:59 +0200
+Processing by SessionsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  Rendered sessions/new.html.erb within layouts/application (171.9ms)
+Completed 200 OK in 328ms (Views: 328.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('53.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">Not logged user is redirected to signin_url with a info message when access to protected area</span><span class='duration'>0.57812s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$ck9i.1EqsGKfKlUTzrwEsOWWwYjiXD7JY/I8hxMISvMT1saHBgdlm"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Started GET "/rack_session/edit" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Started PUT "/rack_session" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Started GET "/rack_session" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Started GET "/" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered products/_product_filter.erb (0.0ms)
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products"
+  Rendered collection (0.0ms)
+  Rendered products/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+Started DELETE "/signout?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"locale"=>"en"}
+Redirected to http://www.example.com/signin?locale=en
+Completed 302 Found in 16ms (ActiveRecord: 0.0ms)
+Started GET "/signin?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by SessionsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('57.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">User log out</span><span class='duration'>0.12500s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$4JK.xd4sDlt7Ru1MpuGmUudTecK3GJ2kjjovIa6PG94KgJ8Z.XauG"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by ProductsController#index as HTML
+Redirected to http://www.example.com/signin?locale=en
+Filter chain halted as :require_signin! rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+Started GET "/signin?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by SessionsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+Started GET "/signin?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by SessionsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+Started POST "/signin?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "signin"=>{"email"=>"an_user@example.com", "password"=>"[FILTERED]"}, "button"=>"", "locale"=>"en"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Redirected to http://www.example.com/?locale=en
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+Started GET "/?locale=en" for 127.0.0.1 at 2014-04-21 13:32:00 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered products/_product_filter.erb (0.0ms)
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products"
+  Rendered collection (0.0ms)
+  Rendered products/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('60.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">Signing in via form</span><span class='duration'>0.10938s</span></dd>
+  </dl>
+</div>
+<div id="div_group_10" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_10" class="passed">ProductsController</dt>
+  </dl>
+</div>
+<div id="div_group_11" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_11" class="passed">POST create</dt>
+  </dl>
+</div>
+<div id="div_group_12" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_12" class="passed">with valid attributes</dt>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$YrNHvTAEAUFLp8.17oVeI.sOBUZuBpabQI9MQuJQSNC2QEdZOWZOu"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "products"[0m
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"Product name", "stored_at"=>"-4712-01-01T00:00:00+00:00", "stock"=>"5", "price"=>"10.5"}}
+  [1m[35mUser Load (15.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 5], ["stored_at", Thu, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Redirected to http://test.host/products/73?locale=en
+Completed 302 Found in 16ms (ActiveRecord: 15.6ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "products"[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('64.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">creates a new product</span><span class='duration'>0.03125s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$WdGHKsGCwYztSzGzi7VbQu9la6VSZzK7bZOMVh.1eic98gOaS0i1C"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>"Product name", "stored_at"=>"-4712-01-01T00:00:00+00:00", "stock"=>"5", "price"=>"10.5"}}
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 5], ["stored_at", Thu, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Redirected to http://test.host/products/74?locale=en
+Completed 302 Found in 16ms (ActiveRecord: 0.0ms)
+  [1m[36mProduct Load (0.0ms)[0m  [1mSELECT "products".* FROM "products" ORDER BY "products"."id" DESC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('67.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">redirects to the new product</span><span class='duration'>0.01562s</span></dd>
+  </dl>
+</div>
+<div id="div_group_13" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_13" class="passed">with invalid attributes</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$Loz0sSGv74hV6oJLKUNSU.o4a4qoxQKWcmupiQRVk95Ms5g8L7TTC"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "products"
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>nil, "stored_at"=>"-4712-01-01T00:00:00+00:00", "stock"=>"5", "price"=>"10.5"}}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" IS NULL LIMIT 1
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "products"[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('71.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">does not save the new product</span><span class='duration'>0.03125s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$67ZiywtVhh0QYWxT065Djuvoh55ISqskWmoJt8TP2MAJFlupLKaRO"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#create as HTML
+  Parameters: {"product"=>{"name"=>nil, "stored_at"=>"-4712-01-01T00:00:00+00:00", "stock"=>"5", "price"=>"10.5"}}
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mProduct Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "products" WHERE "products"."name" IS NULL LIMIT 1[0m
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('75.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">re-renders the new method</span><span class='duration'>0.01562s</span></dd>
+  </dl>
+</div>
+<div id="div_group_14" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_14" class="passed">GET #new</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$MDEu9eUIrjGdZupLhJ4Cm.Ya1IENTzSzSVR4xeIc6HFVjNtWOr2cG"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#new as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 7]]
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('78.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">assigns a new Product to @product</span><span class='duration'>0.00000s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$z2mMch2hB8dV/BzEaiLcWumH0m2bgtPEYDWjFwbiTZ4pVBJCx6.Pe"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('82.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">renders the :new template</span><span class='duration'>0.01562s</span></dd>
+  </dl>
+</div>
+<div id="div_group_15" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_15" class="passed">GET index</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$91XJRUe6Wsi8F0gOQSmxaOT0p6qMtVcBgD52dtJH.S/SE7CDPhHD2"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 71 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product 71 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 72 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product 72 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product 73 name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product 73 name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 9]]
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+  [1m[36mProduct Load (0.0ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('85.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">populates an array of products</span><span class='duration'>0.01562s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$5sIr2BriPuyPnEuEIWi6JevlCFieCGqOr7TJduieOmIpVVO90KuZa"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+    <script type="text/javascript">moveProgressBar('89.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">renders the index template</span><span class='duration'>0.01562s</span></dd>
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$RDK9p7.MIrEr4h5TYyAL..SNXAimbF.DBT6jfSf44PbZS1Aoei70W"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (15.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+Completed 200 OK in 16ms (Views: 0.0ms | ActiveRecord: 15.6ms)
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('92.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">return a 200 status code</span><span class='duration'>0.01562s</span></dd>
+  </dl>
+</div>
+<div id="div_group_16" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_16" class="passed">GET #show</dt>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$iqavm39slfFh.P/TIeBTVOyzHfuAAEZsoH5c6H0EbtxT560UV1TMu"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"78"}
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", "78"]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 12]]
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('96.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">assigns the requested product to @product</span><span class='duration'>0.01562s</span></dd>
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'an_user@example.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "last_name", "name", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["email", "an_user@example.com"], ["last_name", "matas"], ["name", "roberto"], ["password_digest", "$2a$04$nYoVKc5sC9AVCtf/L3oROOh1vDJRTOA1jyMJ.AM4BuFWfhvp7geXi"], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+  [1m[35mProduct Exists (0.0ms)[0m  SELECT 1 AS one FROM "products" WHERE "products"."name" = 'Product name' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "products" ("created_at", "name", "price", "stock", "stored_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00], ["name", "Product name"], ["price", 10.5], ["stock", 5], ["stored_at", Mon, 01 Jan -4712 00:00:00 UTC +00:00], ["updated_at", Mon, 21 Apr 2014 11:32:00 UTC +00:00]]
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"79"}
+  [1m[35mProduct Load (0.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", "79"]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 13]]
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  ROLLBACK
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">renders the :show template</span><span class='duration'>0.01562s</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>1.81250 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "28 examples, 0 failures";</script>
+</div>
+</div>
+</body>
+</html>
+
+Randomized with seed 45397
+

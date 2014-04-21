@@ -43,6 +43,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.include AuthenticationHelpers, type: :controller
+
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
