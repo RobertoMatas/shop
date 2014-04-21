@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "User Session Management" do
+
 	scenario 'Signing in via form' do
 		user = create(:user)
 		visit '/'
